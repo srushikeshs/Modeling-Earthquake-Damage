@@ -7,4 +7,6 @@ Based on aspects of building location and construction aspects, our goal is to p
 The dataset contains valuable information on earthquake impacts, household conditions, and socio-economic-demographic statistics. There are 38 features with respect to each buildings and damage grade label (indicating level of damage). The training data has 260k+ records.
 
 ## 3. Exploratory Data Analysis and Inferences
+#### 3.1 Correlation Plot 
+There are no explicit correlation of the features with damage grade. Height Percentage is correlated with No. of Floors which makes sense.
 ![Alt text](https://github.com/srushikeshs/Modeling-Earthquake-Damage/blob/main/Visualization/Correlation_Plot.png)
