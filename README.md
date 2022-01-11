@@ -29,3 +29,24 @@ The ordinality is not observed after 4 or more floor onwards as there aren't sig
 #### 3.5 Damage Grade by Construction Material
 The below chart reveals that the stronger the materials used to construct the building lesser the damage caused to it. 
 ![Alt text](https://github.com/srushikeshs/Modeling-Earthquake-Damage/blob/main/Visualization/Damage_Grade_by_Construction.png)
+
+## 4. Transforming Geo-Location Information
+Geo id captures the geographic region in which building exists, from largest (level 1) to most specific sub-region (level 3).
+Possible values: level 1: 0-30, level 2: 0-1427, level 3: 0-12567. The combination of 3 geo ids creates two many classes for a classification model. To convert these categorical information to continous numberical value we pass the geo_level_3_id as input to a three layer Neural Network and train on output that is (geo_level_2_id and geo_level_1_id) and then extract the second hidden layer and use it as a feature in our model. The hidden layer does the feature engineering for us - it captures the important numerical information in the last layer. We extract the last hidden layer (24 nuerons) and feed it to our model as additional feature. 
+
+## 5. Modeling
+I tried various tree based models like Decision Tree, Random Forest, XGBoost, and LightGBM. XGBoost and LightGBM outperforms other models (XGBoost > LightGBM). I used LightGBM because reduced training time compared to XGBoost. 
+
+## 6. Evaluation Metric
+Used F1-micro averages as the evaluation criteria
+
+A macro-average will compute the metric independently for each class and then take the average (hence treating all classes equally).
+Whereas a micro-average will aggregate the contributions of all classes to compute the average metric. 
+In a multi-class classification setup, micro-average is preferable if you suspect there might be class imbalance (i.e you may have many more examples of one class than of other classes).
+
+## 7. Result
+The tuned LightGBM yielded a F1-micro-average score of 0.7525. 
+![Alt text](https://github.com/srushikeshs/Modeling-Earthquake-Damage/blob/main/Submission_Score.png)
+
+## Future Scope
+Additionally, we can try ensembling different models together to reduce the variance and improve F1 score. 
